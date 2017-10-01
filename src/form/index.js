@@ -58,7 +58,7 @@ class Form extends React.Component {
             ref="pickAMonth"
             years={[2014,2015,2016,2017]}
             value={this.state.monthObject || {}}
-            lang={['Jan', 'Feb', 'Mar', 'Spr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']}
+            lang={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']}
             onChange={this.handleMonthChange}
           >
             <input
