@@ -114,6 +114,10 @@ class Chart extends React.Component {
       ]
     };
 
+    if (!this.props.show) {
+      return null
+    }
+
     return (
       <div className="chart">
         <h2>Bar chart</h2>

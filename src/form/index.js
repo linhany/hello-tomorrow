@@ -70,6 +70,9 @@ class Form extends React.Component {
             />
           </Picker>
         </div>
+        <button onClick={this.props.onSubmit}>
+          Show Chart!
+        </button>
       </div>
     )
   }
