@@ -14,25 +14,16 @@ const highlightedCategory = '500-550';
 
 const normalBackgroundColor = 'rgba(255,99,132,0.2)';
 const normalHoverBackgroundColor = 'rgba(255,99,132,0.4)';
+const normalBorderColor = 'rgba(255,99,132,1)';
 
 const specialBackgroundColor = 'rgba(61,118,211,0.4)';
 const specialHoverBackgroundColor = 'rgba(61,118,211,0.8)';
-
-const normalBorderColor = 'rgba(255,99,132,1)';
 const specialBorderColor = 'rgba(2,53,135,1)'
 
-function generateBarChartColors(normal, special) {
-  var resultArr = [];
-  for (var i = 0; i < xValues.length; i++) {
-    const currX = xValues[i];
-    if (currX == highlightedCategory) {
-      resultArr.push(special);      
-    } else {
-      resultArr.push(normal);
-    }
-  }
-  return resultArr;
-}
+const optimalBackgroundColor = 'rgba(157,255,155,0.4)';
+const optimalHoverBackgroundColor = 'rgba(157,255,155,0.8)';
+const optimalBorderColor = 'rgba(62,119,61,1)'
+
 
 function getAverageFromCategory(priceCategory) {
   const arr = priceCategory.split("-");
@@ -53,21 +44,6 @@ function getOptimalPriceCategoryAndTopRevenue() {
   }
   return [optimalPriceCategory, topRevenue];
 }
-
-const data = {
-  labels: xValues,
-  datasets: [
-    {
-      label: 'Adult Pax',      
-      backgroundColor: generateBarChartColors(normalBackgroundColor, specialBackgroundColor),
-      borderColor: generateBarChartColors(normalBorderColor, specialBorderColor),
-      borderWidth: 1,
-      hoverBackgroundColor: generateBarChartColors(normalHoverBackgroundColor, specialHoverBackgroundColor),
-      hoverBorderColor: generateBarChartColors(normalBorderColor, specialBorderColor),
-      data: yValues
-    }
-  ]
-};
 
 const options = {
   maintainAspectRatio: false,
@@ -90,7 +66,7 @@ const options = {
       scaleLabel: {
         display: true,
         labelString: 'Price Categories',
-        fontSize: 20                  
+        fontSize: 20
       },
       gridLines: {
         color: "rgba(0, 0, 0, 0)",
@@ -100,8 +76,45 @@ const options = {
 };
 
 class Chart extends React.Component {
+
+
+  generateBarChartColors = (optimalCategory) => (normal, special, optimal) => {
+    var resultArr = [];
+    for (var i = 0; i < xValues.length; i++) {
+      const currX = xValues[i];
+      if (currX == highlightedCategory) {
+        resultArr.push(special);
+      } else if (currX == optimalCategory) {
+        resultArr.push(optimal)
+      } else {
+        resultArr.push(normal);
+      }
+    }
+    return resultArr;
+  }
+
   render() {
-    return (  
+
+    const optimal = getOptimalPriceCategoryAndTopRevenue()
+
+    const generateBarChartColors = this.generateBarChartColors(optimal[0])
+
+    const data = {
+      labels: xValues,
+      datasets: [
+        {
+          label: 'Adult Pax',
+          backgroundColor: generateBarChartColors(normalBackgroundColor, specialBackgroundColor, optimalBackgroundColor),
+          borderColor: generateBarChartColors(normalBorderColor, specialBorderColor, optimalBorderColor),
+          borderWidth: 1,
+          hoverBackgroundColor: generateBarChartColors(normalHoverBackgroundColor, specialHoverBackgroundColor, optimalHoverBackgroundColor),
+          hoverBorderColor: generateBarChartColors(normalBorderColor, specialBorderColor, optimalBorderColor),
+          data: yValues
+        }
+      ]
+    };
+
+    return (
       <div className="chart">
         <h2>Bar chart</h2>
         <Bar
@@ -110,8 +123,8 @@ class Chart extends React.Component {
           height = {height}
           options = {options}
         />
-        <h3>The price category of {getOptimalPriceCategoryAndTopRevenue()[0]} gives the optimal estimated revenue of US${getOptimalPriceCategoryAndTopRevenue()[1]} under the given conditions.</h3>      
-        <h3>You are overpricing!</h3>              
+        <h3>The price category of {getOptimalPriceCategoryAndTopRevenue()[0]} gives the optimal estimated revenue of US${getOptimalPriceCategoryAndTopRevenue()[1]} under the given conditions.</h3>
+        <h3>You are overpricing!</h3>
       </div>
     );
   }
