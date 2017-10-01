@@ -103,7 +103,7 @@ class Chart extends React.Component {
   render() {
     return (  
       <div className="chart">
-        <h2>Totally not hard coded bar chart</h2>
+        <h2>Bar chart</h2>
         <Bar
           data = {data}
           width = {width}
