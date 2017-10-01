@@ -5204,6 +5204,12 @@ react-input-autosize@^2.0.1:
     create-react-class "^15.5.2"
     prop-types "^15.5.8"
 
+react-month-picker@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-month-picker/-/react-month-picker-1.3.0.tgz#f48c77a2275266d33be28b9617ead5a41476830d"
+  dependencies:
+    react-tapper "^0.1.14"
+
 react-scripts@1.0.14:
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.0.14.tgz#70fe76c9beb67b136b953e875bdfe4ad78d410d1"
@@ -5253,6 +5259,10 @@ react-select@^1.0.0-rc.10:
     classnames "^2.2.4"
     prop-types "^15.5.8"
     react-input-autosize "^2.0.1"
+
+react-tapper@^0.1.14:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/react-tapper/-/react-tapper-0.1.15.tgz#a9675f5122a06cb218aa48948cbdf3d1313ef8f5"
 
 "react@^15 || ^16", react@^16.0.0:
   version "16.0.0"

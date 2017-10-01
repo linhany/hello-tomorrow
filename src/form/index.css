@@ -1,0 +1,27 @@
+.form {
+  width: 90vw;
+  margin: auto;
+}
+
+.form-component {
+  padding: 10px;
+}
+
+.month-display {
+  text-align: center;
+  color: #aaa;
+  line-height: 34px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 34px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+label {
+  text-align: left;
+  display: block;
+}
